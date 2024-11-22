@@ -1,16 +1,20 @@
 'use strict';
 
 const id = document.querySelector('#id'),
+      name = document.querySelector('#name'),
       psword = document.querySelector('#psword'),
-      loginBtn = document.querySelector('#button');
+      confirmPsword = document.querySelector('#confirm-psword'),
+      registerBtn = document.querySelector('#button');
 
-loginBtn.addEventListener('click', () => {
+registerBtn.addEventListener('click', () => {
   const req = {
     id : id.value,
+    name : name.value,
     psword : psword.value,
-  }
+    confirmPsword : confirmPsword.value,
+  };
 
-  fetch('/login', {
+  fetch('/register', {
     method : "POST",
     headers : {
       'Content-Type': 'application/json',
@@ -20,7 +24,7 @@ loginBtn.addEventListener('click', () => {
   .then(res => res.json())
   .then(res => {
     if(res.success){
-      window.location = "/";
+      window.location = "/login";
     }else{
       alert(res.msg)
     }
